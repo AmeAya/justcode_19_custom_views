@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Template</title>
+</head>
+<body>
+    <h1>{{ word }}</h1>
+
+    {% for book in books %}
+        <p>{{ book.name }}</p>
+    {% endfor %}
+
+    {% for author in authors %}
+        <p>{{ author.name }}</p>
+    {% endfor %}
+</body>
+</html>
