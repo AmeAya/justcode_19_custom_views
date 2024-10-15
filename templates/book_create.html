@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Create</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <p>
+            <label>Book Name:</label>
+            <input type="text" name="book_name">
+        </p>
+
+        <p>
+            <label>Book Author:</label>
+            <select name="book_author">
+                {% for author in authors %}
+                    <option value="{{ author.id }}">
+                        {{ author.name }} {{ author.surname }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            <label>Book Genre:</label>
+            <select name="book_genre">
+                {% for genre in genres %}
+                    <option value="{{ genre.id }}">
+                        {{ genre.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            <label>Book Year:</label>
+            <input type="number" name="book_year">
+        </p>
+
+        <p>
+            <label>Book Is Popular:</label>
+            <input type="checkbox" name="book_is_popular">
+        </p>
+
+        <input type="submit" value="Create Book">
+    </form>
+</body>
+</html>
