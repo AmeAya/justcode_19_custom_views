@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Update</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <p>
+            <label>Book Name:</label>
+            <input type="text" name="book_name"
+                   value="{{ book.name }}">
+        </p>
+
+        <p>
+            <label>Book Author:</label>
+            <select name="book_author">
+
+                {% for author in authors %}
+                    {% if author.id == book.author.id %}
+                        <option value="{{ author.id }}" selected>
+                            {{ author.name }} {{ author.surname }}
+                        </option>
+                    {% else %}
+                        <option value="{{ author.id }}">
+                            {{ author.name }} {{ author.surname }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            <label>Book Genre:</label>
+            <select name="book_genre">
+                {% for genre in genres %}
+                    {% if genre.id == book.genre.id %}
+                        <option value="{{ genre.id }}" selected>
+                            {{ genre.name }}
+                        </option>
+                    {% else %}
+                        <option value="{{ genre.id }}">
+                            {{ genre.name }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            <label>Book Year:</label>
+            <input type="number" name="book_year"
+                   value="{{ book.year }}">
+        </p>
+
+        <p>
+            <label>Book Is Popular:</label>
+            {% if book.is_popular is True %}
+                <input type="checkbox" name="book_is_popular"
+                       checked>
+            {% else %}
+                <input type="checkbox" name="book_is_popular">
+            {% endif %}
+        </p>
+
+        <input type="submit" value="Update Book">
+    </form>
+</body>
+</html>

@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/<int:book_id>', book_detail_view, name='book_detail_url'),
     path('book_create', book_create_view, name='book_create_url'),
+    path('book_delete/<int:book_id>', book_delete_view, name='book_delete_url'),
+    path('book_update/<int:book_id>', book_update_view, name='book_update_url'),
     path('', main_view, name='main_url'),
 ]
