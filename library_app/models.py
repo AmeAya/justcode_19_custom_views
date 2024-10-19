@@ -25,5 +25,9 @@ class Book(models.Model):
     is_popular = models.BooleanField(default=False)
     # default -> Стандартное значение
 
+    from django.contrib.auth.models import User
+    users = models.ManyToManyField(User, blank=True)
+    # Привязываем к django Users через Many-to-Many
+
     def __str__(self):
         return self.name

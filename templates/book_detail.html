@@ -9,6 +9,13 @@
         <h1 align="center">{{ book.name }}</h1>
         <h3>{{ book.genre }} - {{ book.year }}</h3>
 
+        <p>Эта книга понравилась пользователям:</p>
+        <ul>
+            {% for elem in book.users.all %}
+                <li>{{ elem.username }}</li>
+            {% endfor %}
+        </ul>
+
         <form action="{% url 'book_delete_url' book.id %}"
               method="post">
             {% csrf_token %}

@@ -7,6 +7,21 @@
 <body>
     <h1>{{ word }}</h1>
 
+    <!-- Переменная user встроена в Django -->
+    <!-- is_authenticated - True, если пользователь
+         уже вошел в систему(авторизован), иначе False
+     -->
+    {% if user.is_authenticated %}
+        <h3>Hello, {{ user.username }}</h3>
+        <a href="{% url 'logout_url' %}">
+            Log Out
+        </a>
+    {% else %}
+        <a href="{% url 'login_url' %}">
+            Log In
+        </a>
+    {% endif %}
+
     {% for book in books %}
         <p>{{ book.name }}</p>
     {% endfor %}

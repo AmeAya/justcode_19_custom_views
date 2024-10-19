@@ -121,8 +121,34 @@ def book_update_view(request, book_id):
         return redirect(book_detail_view, book_id=book_id)
 
 
-# Создать 3 новых вью
-# 1) author_detail_view(+ темплейт)
-# 2) author_update_view(+ темплейт)
-# 3) author_delete_view(Формочка с кнопкой удаления, должна быть
-#    на темплейте для author_detail_view)
+def login_view(request):
+    if request.method == 'GET':
+        return render(request, 'login_template.html')
+    elif request.method == 'POST':
+        from django.contrib.auth import authenticate, login
+        from django.shortcuts import redirect
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username,
+                            password=password)
+        # authenticate - Проверяет есть ли такой пользователь
+        # Если нет такого пользователя, вернет None
+        if user is None:
+            context = {
+                'error': 'Invalid login and/or password'
+            }
+            return render(request, 'login_template.html',
+                          context=context)
+        login(request, user)
+        # login - Выдает токен для доступа, записывает к себе
+        #         какой юзер, какой токен получил
+        return redirect(main_view)
+
+
+def logout_view(request):
+    from django.contrib.auth import logout
+    from django.shortcuts import redirect
+    logout(request)
+    # logout - В request находит какой пользователь,
+    #          удаляет токен привязанный к нему
+    return redirect(login_view)

@@ -24,5 +24,7 @@ urlpatterns = [
     path('book_create', book_create_view, name='book_create_url'),
     path('book_delete/<int:book_id>', book_delete_view, name='book_delete_url'),
     path('book_update/<int:book_id>', book_update_view, name='book_update_url'),
+    path('login', login_view, name='login_url'),
+    path('logout', logout_view, name='logout_url'),
     path('', main_view, name='main_url'),
 ]
